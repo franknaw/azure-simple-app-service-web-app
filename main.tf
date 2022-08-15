@@ -8,7 +8,7 @@ resource "azurerm_service_plan" "sp" {
   name                = "webapp-sp-${var.plan_os_type}"
   location            = var.location
   resource_group_name = var.resource_group_name
-  os_type             = var.plan_os_type #"Linux"
+  os_type             = var.plan_os_type
   sku_name            = var.plan_sku_name
   tags = merge({
     Name = "${var.product_name}-${var.plan_os_type}-service-plan",
