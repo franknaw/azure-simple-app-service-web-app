@@ -14,4 +14,3 @@ output "prod_name_windows" {
 output "slot_1_name_windows" {
   value = join("", azurerm_windows_web_app_slot.slot_1.*.name)
 }
-

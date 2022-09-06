@@ -4,18 +4,18 @@ An App Service plan defines a set of compute resources for a web app to run.
 These compute resources are analogous to the server farm in conventional web hosting. 
 One or more apps can be configured to run on the same computing resources (or in the same App Service plan).
 */
-resource "azurerm_service_plan" "sp" {
-  name                = "webapp-sp-${var.plan_os_type}"
-  location            = var.location
-  resource_group_name = var.resource_group_name
-  os_type             = var.plan_os_type
-  sku_name            = var.plan_sku_name
-  tags = merge({
-    Name = "${var.product_name}-${var.plan_os_type}-service-plan",
-    },
-    var.tags
-  )
-}
+//resource "azurerm_service_plan" "sp" {
+//  name                = "webapp-sp-${var.plan_os_type}"
+//  location            = var.location
+//  resource_group_name = var.resource_group_name
+//  os_type             = var.plan_os_type
+//  sku_name            = var.plan_sku_name
+//  tags = merge({
+//    Name = "${var.product_name}-${var.plan_os_type}-service-plan",
+//    },
+//    var.tags
+//  )
+//}
 
 /*
 Create a linux web app service.
@@ -28,7 +28,7 @@ resource "azurerm_linux_web_app" "web_app" {
   name                = var.web_app_name
   location            = var.location
   resource_group_name = var.resource_group_name
-  service_plan_id     = azurerm_service_plan.sp.id
+  service_plan_id     = var.service_plan.id
   https_only          = true
 
   site_config {
@@ -164,7 +164,7 @@ resource "azurerm_windows_web_app" "web_app" {
   name                = var.web_app_name
   location            = var.location
   resource_group_name = var.resource_group_name
-  service_plan_id     = azurerm_service_plan.sp.id
+  service_plan_id     = var.service_plan.id
   https_only          = true
 
   site_config {
